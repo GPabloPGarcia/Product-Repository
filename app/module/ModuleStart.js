@@ -1,0 +1,1 @@
+angular.module('productRepository', ['smart-table', 'ui.bootstrap']);
