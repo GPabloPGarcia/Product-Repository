@@ -1,19 +1,99 @@
+<style>
+	.discount-table td {
+		font-weight: bold;
+	}
+
+	/* Gerar cores de fundo dinamicamente */
+	.discount-5 {
+		background-color: #adebeb;
+	}
+
+	.discount-15 {
+		background-color: #80e0a1;
+	}
+
+	.discount-30 {
+		background-color: #ffc266;
+	}
+
+	.discount-50 {
+		background-color: #ff9999;
+	}
+
+	.discount-75 {
+		background-color: #ff6666;
+	}
+</style>
 <div class="clearfix">
-  <div class="modal-header model-grey-color">
-		<button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="cancelModal()"><span aria-hidden="true">&times;</span></button>
-    <h4 class="modal-title">View : {{product.product_name}}</h4>
-  </div>
-  <div class="modal-body">
-	<dl class="dl-horizontal">
-	  <dt>Name</dt>
-	  <dd>{{product.product_name}}</dd>
-	  <dt>Age</dt>
-	  <dd>{{product.product_age}}</dd>
-	  <dt>Salary</dt>
-	  <dd>{{product.product_salary}}</dd>
-	</dl>
-  </div>
-  <div class="modal-footer">
-    <button class="btn btn-danger" ng-click="cancelModal()"><i class="fa fa-close"></i> Close</button>
-  </div>
+	<div class="modal-header model-grey-color">
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="cancelModal()"><span
+				aria-hidden="true">&times;</span></button>
+		<h4 class="modal-title text-info">View : {{product.name}}</h4>
+	</div>
+	<div class="modal-body">
+
+		<div class="row">
+			<div class="col-md-6">
+				<dl class="dl-horizontal"></dl>
+				<dt>
+					<h3>Nome</h3>
+				</dt>
+				<dd>
+					<h4 style="font-weight: bold; padding: 5px;">{{product.name}}</h4>
+				</dd>
+				<dt>
+					<h3>Quantidade</h3>
+				</dt>
+				<dd>
+					<h4 style="font-weight: bold; padding: 5px;">{{product.quantity}}</h4>
+				</dd>
+				</dl>
+			</div>
+			<div class="col-md-6">
+				<dl class="dl-horizontal"></dl>
+				<dt>
+					<h3>Preço de custo</h3>
+				</dt>
+				<dd>
+					<h4 style="font-weight: bold; background-color: grey; color: #333; padding: 5px;">
+						{{product.cost_price | currency: "R$ "}}</h4>
+				</dd>
+				<dt>
+					<h3>Preço de venda</h3>
+				</dt>
+				<dd>
+					<h4 style="font-weight: bold; background-color: green; color: greenyellow; padding: 5px;">
+						{{product.sales_price | currency: "R$ "}}</h4>
+				</dd>
+
+				<dt>
+					<h3>Categoria</h3>
+				</dt>
+				<dd>
+					<h4 style="font-weight: bold; padding: 5px;">{{product.category}}</h4>
+				</dd>
+				</dl>
+			</div>
+		</div>
+		<hr>
+		<h2>Tabela de Descontos</h2>
+		<table class="table discount-table">
+			<thead>
+				<tr>
+					<th>Desconto</th>
+					<th>Preço com Desconto</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="discount in discountList">
+					<td class="">{{discount}}%</td>
+					<td class="discount-{{discount}}">{{ (product.sales_price * (1 - discount / 100)) | currency: "R$ "
+						}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-danger" ng-click="cancelModal()"><i class="fa fa-close"></i> Close</button>
+	</div>
 </div>
